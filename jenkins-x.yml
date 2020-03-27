@@ -1,1 +1,9 @@
 buildPack: go
+pipelineConfig:
+  pipelines:
+    overrides:
+      # Replace make-build on pullRequest in any stage/lifecycle with "exit 1" so the pipeline will fail.
+      - pipeline: pullRequest
+        name: make-linux
+        step:
+          sh: sleep 15 && exit 1
